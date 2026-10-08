@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Py2SafeRust-X — Python-to-Rust Transpilation Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-logo">
+          <span class="logo-py">Py</span>
+          <span class="logo-arrow">➔</span>
+          <span class="logo-rs">Rust</span>
+          <span class="logo-badge">X</span>
+        </div>
+        <div class="brand-titles">
+          <h1>Py2SafeRust-X</h1>
+          <p class="subtitle">Python-to-Rust Transpilation &amp; Adaptive Verification System</p>
+        </div>
+      </div>
+
+      <!-- Health Status Indicator -->
+      <div class="health-container" id="health-container">
+        <div class="health-pill" id="health-pill" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" title="Click to view backend status">
+          <span class="health-dot" id="health-dot"></span>
+          <span class="health-label" id="health-label">Checking backend...</span>
+          <span class="health-chevron">▾</span>
+        </div>
+        <div class="health-dropdown" id="health-dropdown">
+          <div class="health-dropdown-header">System Health &amp; Runtime</div>
+          <div class="health-detail-item">
+            <span class="detail-name">Server API:</span>
+            <span class="detail-value" id="detail-api">--</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="detail-name">Rustc Toolchain:</span>
+            <span class="detail-value" id="detail-rustc">--</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="detail-name">Python Runtime:</span>
+            <span class="detail-value" id="detail-python">--</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="detail-name">LLM Repair Backend:</span>
+            <span class="detail-value" id="detail-llm">--</span>
+          </div>
+          <button class="btn-secondary btn-sm" id="btn-refresh-health" style="width: 100%; margin-top: 8px;">Refresh Status</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace (Two Columns) -->
+    <main class="workspace">
+      <!-- LEFT COLUMN: Input Panel -->
+      <section class="panel panel-left" aria-label="Input Python Code">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="panel-icon">🐍</span>
+            <h2>Python Source</h2>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn-ghost" id="btn-load-file" title="Load a .py file from your device">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Load from file
+            </button>
+            <input type="file" id="file-input" accept=".py" style="display: none;">
+            <button type="button" class="btn-ghost text-danger" id="btn-clear" title="Clear input and reset output">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Inline Validation Alert -->
+        <div class="inline-alert alert-error" id="input-validation-alert" style="display: none;">
+          <span class="alert-icon">⚠️</span>
+          <span class="alert-msg" id="input-validation-msg">Please enter some Python code first.</span>
+        </div>
+
+        <!-- Python Code Editor Textarea (Starts completely empty) -->
+        <div class="editor-wrapper">
+          <textarea
+            id="python-code-input"
+            class="code-editor"
+            placeholder="Paste your Python code here, or load a .py file below."
+            spellcheck="false"
+            wrap="off"
+          ></textarea>
+        </div>
+
+        <!-- Collapsible Advanced Test Inputs -->
+        <details class="collapsible-section" id="test-inputs-details">
+          <summary class="collapsible-summary">
+            <span class="summary-title">
+              <svg class="summary-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              Test Inputs (advanced verification)
+            </span>
+            <span class="summary-badge">Optional</span>
+          </summary>
+          <div class="collapsible-body">
+            <p class="field-hint">Provide optional JSON-formatted test arguments (e.g. <code>[5, 10]</code> or <code>[[1, 2], "sample"]</code>). Leave blank to verify the script directly.</p>
+            <textarea
+              id="test-inputs-input"
+              class="code-editor-secondary"
+              placeholder='Optional JSON test inputs, e.g. [1, 2, 3]'
+              spellcheck="false"
+              rows="3"
+            ></textarea>
+          </div>
+        </details>
+
+        <!-- Submit Controls Footer -->
+        <div class="panel-footer">
+          <div class="footer-options">
+            <label class="toggle-control" title="Check this to run the pipeline as a background asynchronous job with polling">
+              <input type="checkbox" id="async-mode-toggle">
+              <span class="toggle-slider"></span>
+              <span class="toggle-text">Async mode (job queue)</span>
+            </label>
+          </div>
+          <button type="button" class="btn-primary" id="btn-transpile">
+            <span class="btn-text">Transpile &amp; Verify</span>
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Output Panel -->
+      <section class="panel panel-right" aria-label="Transpilation Results">
+        <!-- Placeholder Empty State -->
+        <div class="state-container" id="empty-state">
+          <div class="placeholder-graphic">
+            <div class="graphic-chip">5-Stage Pipeline Ready</div>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="graphic-svg">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Awaiting Python Input</h3>
+          <p>Paste or load Python code into the left editor and click <strong>Transpile &amp; Verify</strong>.</p>
+          <div class="pipeline-flow-hint">
+            <span class="step-chip">1. Transpile</span>
+            <span class="step-sep">➔</span>
+            <span class="step-chip">2. Adaptive Repair</span>
+            <span class="step-sep">➔</span>
+            <span class="step-chip">3. Semantic Verifier</span>
+            <span class="step-sep">➔</span>
+            <span class="step-chip">4. Explanation</span>
+            <span class="step-sep">➔</span>
+            <span class="step-chip">5. Confidence Score</span>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="state-container" id="loading-state" style="display: none;">
+          <div class="spinner-wrapper">
+            <div class="spinner"></div>
+          </div>
+          <h3 id="loading-title">Transpiling Code...</h3>
+          <p id="loading-desc">Parsing AST, inferring types, and performing static ownership borrow analysis...</p>
+          <div class="loading-progress-bar">
+            <div class="loading-progress-fill" id="loading-progress-fill"></div>
+          </div>
+        </div>
+
+        <!-- Error State Banner -->
+        <div class="error-banner" id="error-banner" style="display: none;">
+          <div class="error-banner-header">
+            <span class="error-icon">❌</span>
+            <strong id="error-title">Execution Error</strong>
+            <button type="button" class="btn-close" id="btn-close-error" title="Dismiss error">&times;</button>
+          </div>
+          <pre class="error-message" id="error-message-text"></pre>
+        </div>
+
+        <!-- Active Results Content (Hidden until run) -->
+        <div class="results-container" id="results-container" style="display: none;">
+          <!-- Summary Strip -->
+          <div class="summary-strip" id="summary-strip">
+            <div class="summary-card" id="card-compilation">
+              <span class="summary-label">Compilation</span>
+              <div class="summary-badge-wrapper">
+                <span class="status-badge" id="badge-compilation">--</span>
+              </div>
+            </div>
+
+            <div class="summary-card" id="card-verification">
+              <span class="summary-label">Semantic Match</span>
+              <div class="summary-badge-wrapper">
+                <span class="status-badge" id="badge-verification">--</span>
+              </div>
+            </div>
+
+            <div class="summary-card card-confidence" id="card-confidence">
+              <div class="confidence-header">
+                <span class="summary-label">Confidence Score</span>
+                <span class="confidence-score-val" id="confidence-number">--</span>
+              </div>
+              <div class="gauge-container">
+                <div class="gauge-bar" id="gauge-bar" style="width: 0%;"></div>
+              </div>
+              <!-- Expandable/Tooltip Itemized Deductions -->
+              <div class="breakdown-dropdown" id="confidence-breakdown-dropdown">
+                <div class="breakdown-title">Itemized Confidence Breakdown:</div>
+                <div id="breakdown-items-list" class="breakdown-items-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Warnings Banner (if any) -->
+          <div class="warnings-wrapper" id="warnings-wrapper" style="display: none;">
+            <div class="warnings-header">
+              <span class="warning-icon">⚠️</span>
+              <span id="warnings-count-text">Transpilation Notices:</span>
+              <button type="button" class="btn-close" id="btn-dismiss-warnings" title="Dismiss notices">&times;</button>
+            </div>
+            <ul class="warnings-list" id="warnings-list"></ul>
+          </div>
+
+          <!-- Tab Navigation -->
+          <nav class="tabs-nav" role="tablist">
+            <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-rust">
+              <span>🦀 Rust Code</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-explain">
+              <span>📄 Explanation Report</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-repair">
+              <span>🛠️ Repair Log</span>
+              <span class="tab-count-badge" id="repair-count-badge" style="display: none;">0</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-verification">
+              <span>⚖️ Verification</span>
+            </button>
+          </nav>
+
+          <!-- Tab Panels -->
+          <div class="tab-content-wrapper">
+            <!-- Tab 1: Rust Code -->
+            <div class="tab-pane active" id="tab-rust" role="tabpanel">
+              <div class="code-toolbar">
+                <span class="toolbar-meta" id="rust-lines-meta">0 lines</span>
+                <button type="button" class="btn-secondary btn-sm" id="btn-copy-rust">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span id="copy-btn-text">Copy Code</span>
+                </button>
+              </div>
+              <pre class="code-output-pre"><code id="rust-code-output" class="language-rust"></code></pre>
+            </div>
+
+            <!-- Tab 2: Explanation Report -->
+            <div class="tab-pane" id="tab-explain" role="tabpanel">
+              <div class="markdown-rendered-view" id="explanation-rendered-view"></div>
+            </div>
+
+            <!-- Tab 3: Repair Log -->
+            <div class="tab-pane" id="tab-repair" role="tabpanel">
+              <div class="repair-timeline-container" id="repair-timeline-container"></div>
+            </div>
+
+            <!-- Tab 4: Verification -->
+            <div class="tab-pane" id="tab-verification" role="tabpanel">
+              <div class="verification-toolbar">
+                <div class="verification-summary-box" id="verification-summary-box"></div>
+                <div class="verification-view-toggle" id="verification-view-toggle">
+                  <button type="button" class="view-toggle-btn active" id="btn-view-table" title="View structured comparison table">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                    <span>Table View</span>
+                  </button>
+                  <button type="button" class="view-toggle-btn" id="btn-view-sessions" title="View interactive terminal executions">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    <span>Interactive Sessions</span>
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive" id="verification-table-wrapper">
+                <table class="verification-table" id="verification-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 14%;">Test Case</th>
+                      <th style="width: 32%;">Input (Prompts & Values)</th>
+                      <th style="width: 22%;">Python (Expected Output)</th>
+                      <th style="width: 22%;">Rust (Actual Output)</th>
+                      <th style="width: 10%;">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="verification-table-body"></tbody>
+                </table>
+              </div>
+              <div class="verification-sessions-wrapper" id="verification-sessions-wrapper" style="display: none;">
+                <div class="verification-sessions-container" id="verification-sessions-container"></div>
+              </div>
+              <div id="mismatch-feedback-container" class="mismatch-feedback-box" style="display: none;">
+                <h4>Semantic Mismatch Feedback for Repair Feedback Loop:</h4>
+                <pre id="mismatch-feedback-pre"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js?v=3"></script>
+</body>
+</html>

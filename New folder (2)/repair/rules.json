@@ -1,0 +1,1574 @@
+[
+  {
+    "id": "RULE_E0384_LET_MUT",
+    "error_code": "E0384",
+    "description": "Cannot assign twice to immutable variable; add mut to declaration",
+    "pattern": "cannot assign twice to immutable variable `(?P<var>\\w+)`",
+    "action": "add_mut_to_declaration",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_E0596_LET_MUT",
+    "error_code": "E0596",
+    "description": "Cannot borrow variable as mutable because it is not declared as mutable; add mut to declaration",
+    "pattern": "cannot borrow `(?P<var>\\w+)` as mutable, as it is not declared as mutable",
+    "action": "add_mut_to_declaration",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_E0382_CLONE_MOVE",
+    "error_code": "E0382",
+    "description": "Borrow of moved value; insert .clone() on the prior move or current use",
+    "pattern": "borrow of moved value: `(?P<var>\\w+)`|use of moved value: `(?P<var>\\w+)`",
+    "action": "insert_clone_for_var",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_E0502_BORROW_CONFLICT",
+    "error_code": "E0502",
+    "description": "Cannot borrow variable as mutable because it is also borrowed as immutable; clone value",
+    "pattern": "cannot borrow `(?P<var>\\w+)` as mutable",
+    "action": "insert_clone_for_var",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_E0499_MULTIPLE_MUT_BORROW",
+    "error_code": "E0499",
+    "description": "Cannot borrow variable as mutable more than once at a time; clone source",
+    "pattern": "cannot borrow `(?P<var>\\w+)` as mutable more than once",
+    "action": "insert_clone_for_var",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_UNUSED_MUT",
+    "error_code": "unused_mut",
+    "description": "Variable does not need to be mutable; remove mut keyword",
+    "pattern": "variable does not need to be mutable: `(?P<var>\\w+)`",
+    "action": "remove_mut",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_TYPE_MISMATCH_INT_FLOAT",
+    "error_code": "E0308",
+    "description": "Mismatched types between integer and floating point; add cast",
+    "pattern": "expected `f64`, found integer",
+    "action": "cast_int_to_f64",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_CANNOT_ADD_FLOAT_TO_INT",
+    "error_code": "E0277",
+    "description": "Cannot add float to integer; cast operand to compatible type",
+    "pattern": "cannot add `?(?:\\{float\\}|f64)`? to `?(?:\\{integer\\}|i64)`?|cannot add `?(?:\\{integer\\}|i64)`? to `?(?:\\{float\\}|f64)`?",
+    "action": "cast_float_to_i64_add",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "RULE_DISPLAY_TRAIT_USE_DEBUG",
+    "error_code": "E0277",
+    "description": "Type does not implement Display; change format specifier from {} to {:?} (Debug)",
+    "pattern": "doesn't implement `?(?:std::fmt::)?Display`?|the trait `?(?:std::fmt::)?Display`? is not implemented",
+    "action": "replace_display_with_debug",
+    "source": "pre_seeded"
+  },
+  {
+    "id": "LEARNED_E0599_8",
+    "error_code": "E0599",
+    "description": "Auto-learned rule for E0599 from successful LLM repair",
+    "pattern": "error.*E0599",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_9",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_10",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_11",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_12",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_14",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_15",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0599_16",
+    "error_code": "E0599",
+    "description": "Auto-learned rule for E0599 from successful LLM repair",
+    "pattern": "error.*E0599",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_17",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_18",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0596_19",
+    "error_code": "E0596",
+    "description": "Auto-learned rule for E0596 from successful LLM repair",
+    "pattern": "error.*E0596",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_20",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_21",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_22",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_23",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_24",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_25",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0596_27",
+    "error_code": "E0596",
+    "description": "Auto-learned rule for E0596 from successful LLM repair",
+    "pattern": "error.*E0596",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_TIMEOUT_28",
+    "error_code": "TIMEOUT",
+    "description": "Auto-learned rule for TIMEOUT from successful LLM repair",
+    "pattern": "error.*TIMEOUT",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_29",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_30",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_31",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_32",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_33",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_34",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_35",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_36",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0596_37",
+    "error_code": "E0596",
+    "description": "Auto-learned rule for E0596 from successful LLM repair",
+    "pattern": "error.*E0596",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_38",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_39",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0369_40",
+    "error_code": "E0369",
+    "description": "Auto-learned rule for E0369 from successful LLM repair",
+    "pattern": "error.*E0369",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_41",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_42",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_43",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_44",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_45",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_46",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_47",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_48",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_49",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_50",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_51",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_52",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_53",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_54",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0596_55",
+    "error_code": "E0596",
+    "description": "Auto-learned rule for E0596 from successful LLM repair",
+    "pattern": "error.*E0596",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_TIMEOUT_56",
+    "error_code": "TIMEOUT",
+    "description": "Auto-learned rule for TIMEOUT from successful LLM repair",
+    "pattern": "error.*TIMEOUT",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0596_57",
+    "error_code": "E0596",
+    "description": "Auto-learned rule for E0596 from successful LLM repair",
+    "pattern": "error.*E0596",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_58",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_59",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_60",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_61",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_62",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_TIMEOUT_63",
+    "error_code": "TIMEOUT",
+    "description": "Auto-learned rule for TIMEOUT from successful LLM repair",
+    "pattern": "error.*TIMEOUT",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_TIMEOUT_64",
+    "error_code": "TIMEOUT",
+    "description": "Auto-learned rule for TIMEOUT from successful LLM repair",
+    "pattern": "error.*TIMEOUT",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_65",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_66",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_67",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_68",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_69",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_70",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_71",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_72",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_73",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_74",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_75",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_76",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_77",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_78",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_79",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_80",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_81",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_82",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_83",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_84",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_85",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_86",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_87",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_88",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_89",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_90",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_91",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_92",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_93",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_94",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_95",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_96",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_97",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_98",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_99",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_100",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_101",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_102",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_103",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_104",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_105",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_106",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_107",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_108",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_109",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_110",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_111",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_112",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_unconditional_panic_113",
+    "error_code": "unconditional_panic",
+    "description": "Auto-learned rule for unconditional_panic from successful LLM repair",
+    "pattern": "error.*unconditional_panic",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_114",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_115",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_116",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_117",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_118",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_119",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_120",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_121",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_122",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_123",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_124",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_125",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_126",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_127",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_128",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_129",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_130",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_131",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_132",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_133",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_134",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_135",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_136",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_137",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_138",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0433_139",
+    "error_code": "E0433",
+    "description": "Auto-learned rule for E0433 from successful LLM repair",
+    "pattern": "error.*E0433",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0277_140",
+    "error_code": "E0277",
+    "description": "Auto-learned rule for E0277 from successful LLM repair",
+    "pattern": "error.*E0277",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_141",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_142",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_143",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_144",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_145",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_146",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0425_147",
+    "error_code": "E0425",
+    "description": "Auto-learned rule for E0425 from successful LLM repair",
+    "pattern": "error.*E0425",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_148",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_149",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_150",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0423_151",
+    "error_code": "E0423",
+    "description": "Auto-learned rule for E0423 from successful LLM repair",
+    "pattern": "error.*E0423",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_152",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0423_153",
+    "error_code": "E0423",
+    "description": "Auto-learned rule for E0423 from successful LLM repair",
+    "pattern": "error.*E0423",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_154",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_155",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_156",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0423_157",
+    "error_code": "E0423",
+    "description": "Auto-learned rule for E0423 from successful LLM repair",
+    "pattern": "error.*E0423",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_E0308_158",
+    "error_code": "E0308",
+    "description": "Auto-learned rule for E0308 from successful LLM repair",
+    "pattern": "error.*E0308",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  },
+  {
+    "id": "LEARNED_SEMANTIC_MISMATCH_159",
+    "error_code": "SEMANTIC_MISMATCH",
+    "description": "Auto-learned rule for SEMANTIC_MISMATCH from successful LLM repair",
+    "pattern": "error.*SEMANTIC_MISMATCH",
+    "action": "regex_replace",
+    "replace_pattern": "/\\* placeholder \\*/",
+    "replacement": "// learned fix",
+    "source": "learned"
+  }
+]
